@@ -1,0 +1,411 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=900" />
+
+  <title>Peter Henderson | Community Detection in the Drosophila Connectome</title>
+
+  <link rel="stylesheet" href="css/reveal.css">
+  <link rel="stylesheet" href="css/theme/white.css">
+  <link rel="stylesheet" href="css/force.css" type="text/css">
+  <!-- Portfolio styles -->
+  <link href="https://fonts.googleapis.com/css?family=Abel" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="$/portfolio.css">
+</head>
+
+<body>
+  <div class="header">
+    <!-- <div class="header__logo logo">
+      <a href="#/" class="logo__link"><img class="logo__image" src="$/logo_portfolio.png" alt="logo" /></a>
+    </div> -->
+    <div class="header__menu">
+      <div class="header__menu-item"><a class="header__menu-link" href="#/">Introduction</a></div><!--
+   --><div class="header__menu-item"><a class="header__menu-link" href="#/motivation">Motivation</a></div><!--
+   --><div class="header__menu-item"><a class="header__menu-link" href="#/methods">Methods</a></div><!--
+   --><div class="header__menu-item"><a class="header__menu-link" href="#/results">Results</a></div><!--
+   --><div class="header__menu-item"><a class="header__menu-link" href="#/discussion">Discussion</a></div><!--
+   --><div class="header__menu-item"><a class="header__menu-link" href="#/questions">Questions?</a></div><!--
+   --><div class="header__menu-item header__menu-item_type_contact"><a class="header__menu-link" href="#/contact">Contact</a></div>
+    </div>
+  </div>
+  <div class="reveal">
+    <div class="slides">
+      <section>
+        <!-- <img src="$/images_pf/face.jpg" class="face"> -->
+        <h2>Community Detection in the Drosophila Connectome</h2>
+        <div class="section-subheader">Peter Henderson</div>
+        <img src="http://royalvictoria.mcgill.ca/wp-content/uploads/2014/02/logo_video.png" class="face">
+
+      </section>
+      <section>
+        <section id="motivation">
+          <div class="text">
+            <h2>Motivation</h2>
+            <div class="section-subheader">Why do we care about fruit fly brains?<br/><span style="font-size: 14pt;">(And how can community detection help?)</span></div>
+          </div>
+        </section>
+        <section data-background-image="$/images_pf/The_Human_Connectome.png" data-background-size="700px" id="complex-brains">
+          <h2 style="margin-top: 615px;">Human brains are hard.</h2>
+          <span style="float:left; margin-top: -20px; font-size:10px;">Image courtesy of <a href="https://upload.wikimedia.org/wikipedia/commons/c/cd/The_Human_Connectome.png">Wikipedia</a></span>
+        </section>
+        <section data-background-image="$/images_pf/drosophila.png" data-background-size="400px" id="simple-brain">
+          <h2 style="margin-top: 475px;">Insect brains are small.</h2>
+          <div class="section-subheader">We need to understand the building blocks and scale up.</div>
+          <span style="float:left; margin-top: 25px; font-size:10px;">Image courtesy of <a href="http://www.cell.com/action/showImagesData?pii=S0960-9822%2810%2901522-8">Chiang et al.</a></span>
+        </section>
+        <section>
+<iframe style= "margin-top:20px;" width="100%" height="450" src="https://www.youtube.com/embed/zlv9qi43UmY?autoplay=1&controls=0&showinfo=0&autohide=1" frameborder="0" allowfullscreen></iframe>
+<h2>Why community detection?</h2>
+<div class="section-subheader">Intracommunity nodes probably work together to accomplish a task.</div>
+        </section>
+      </section>
+
+      <section>
+        <section id="methods">
+          <h2>Methods</h2>
+          <div class="section-subheader">These are the nodes you're looking for.<br/><span style="font-size: 14pt;">(And how we found them.)</span> </div>
+        </section>
+        <section><div style="margin-top:40px;" id="ytplayer"></div>
+
+<!-- <iframe id="embedded_video" width="720" height="420" src="https://www.youtube.com/embed/F4lc9cY4fMM?autoplay=1&controls=0&showinfo=0&autohide=1&start=20" frameborder="0" allowfullscreen></iframe> -->
+          <h2>The Data</h2>
+          <div class="section-subheader"><a href="http://www.flycircuit.tw/">FlyCircuit</a> from microscopy imaging.</div>
+        </section>
+        <section data-background-image="$/images_pf/lpus.png" data-background-size="500px">
+          <h2 style="float:right; margin-top: 50px;">What are<br/>Local<br/>Processing<br/>Units?<sup>*</sup></h2>
+          <span style="float:left; margin-top: 285px; font-size:12px;"><a href="http://www.sciencedirect.com/science/article/pii/S0960982210015228"><sup>*</sup>Image from Chiang, Ann-Shyn, et al. "Three-dimensional reconstruction of brain-wide wiring networks in Drosophila at single-cell resolution." Current Biology 21.1 (2011): 1-11.</a></span>
+        </section>
+        <section>
+          <h2 style="margin-top:170px;">49 LPU nodes, 2401 weighted directed edges</h2>
+          <div class="section-subheader">Shih et al.<sup>*</sup> convert FlyCircuit to fully connected local processing unit (LPU) <a href="http://www.sciencedirect.com/science/article/pii/S096098221500336X">network.</a></div>
+          <!-- <div class="section-subheader"></div> -->
+          <span style="float:left; margin-top: 145px; font-size:12px;"><sup>*</sup>Shih, Chi-Tin, et al. "Connectomics-based analysis of information flow in the Drosophila brain." Current Biology 25.10 (2015): 1249-1258.</span>
+        </section>
+        <section>
+          <h2>The Tools</h2>
+          <img class="face" style="float:left; width:25%" src="$/images_pf/python.png"/>
+
+          <div style="float:left;" id="chart"><a href="networkx.github.io">NetworkX</a></div>
+          <a href="http://igraph.org/python/">igraph</a>
+        </section>
+        <section>
+          <h2>Louvain Modularity Maximization</h2>
+          <div class="section-subheader"><a href="https://arxiv.org/abs/0803.0476">Vincent D. Blondel, Jean-Loup Guillaume, Renaud Lambiotte, Etienne Lefebvre</a><br/><span style="font-size: 14pt;"><sup>*</sup>Summed directed edges to make undirected graph.<br/><a href="http://perso.crans.org/aynaud/communities/">NetworkX Community Package</a></span></div>
+        </section>
+        <section>
+          <h2>Why Louvain Modularity Maximization?</h2>
+          <div class="section-subheader">Don't expect communities with $l < \sqrt{\frac{L}{2}}$ nodes.
+          <br/><span style="font-size: 14pt;">Louvain <i>allegedly</i> improves on resolution due to hierarchical nature.</span>
+          <br/><span style="font-size: 14pt;">Louvain method faster with better (higher modularity communities) than <a href="https://arxiv.org/pdf/cond-mat/0408187.pdf">Newman method.</a></span></div>
+        </section>
+        <section>
+          <h2>Walktrap</h2>
+          <div class="section-subheader"><a href="https://arxiv.org/abs/physics/0512106">Pascal Pons, Matthieu Latapy</a><br/><span style="font-size: 14pt;">Used <a href="http://igraph.org/python/">igraph</a> implementation.</span></div>
+        </section>
+        <section>
+          <h2>Why Walktrap?</h2>
+          <div class="section-subheader">Random walk methods intuitive for brain connectomes.
+            <br/><span style="font-size: 14pt;">Paths can be indicative of signal processes (sensors to motor output).</span>
+            <br/><span style="font-size: 14pt;">Higher weighted paths (with more interconnected neurons) have higher probability of traversal.
+            <br/>Markov transition matrix: $P = D^{−1}A$</span>
+          </div>
+        </section>
+        <section>
+          <h2>Spinglass</h2>
+          <div class="section-subheader"><a href="https://arxiv.org/abs/cond-mat/0603718">Joerg Reichardt, Stefan Bornholdt</a><br/><span style="font-size: 14pt;">Used <a href="http://igraph.org/python/">igraph</a> implementation.</span></div>
+        </section>
+        <section>
+          <h2>Why Spinglass?</h2>
+          <div class="section-subheader">
+            <br/><span style="font-size: 14pt;"><a href="http://www.nature.com/articles/srep30750">Yang et al.</a> show that Spinglass and Walktrap perform better than other algos in small networks (like this one).</span>
+            <br/><span style="font-size: 14pt;">Outperforms other dynamics algorithms in repeatability according to Yang et al.</span>
+            <br/><span style="font-size: 14pt;">Allows you to adjust resolution based on $\gamma$ value in Hamiltonian.</span>
+            <br/><span style="font-size: 14pt;">When $\gamma=1$, essentially Modularity Maximization as described by <a href="http://journal.frontiersin.org/article/10.3389/fnsys.2010.00147/full">Alexander-Bloch et al.</a></span>
+          </div>
+        </section>
+      </section>
+
+      <section>
+        <section id="results">
+          <h2>Results</h2>
+          <div class="section-subheader">Hey, we found something?</div>
+        </section>
+        <section data-background-image="$/images_pf/modularity_louvain.svg" data-background-size="600px">
+          <h2 style="float:right;">Louvain<br/>Modularity<br/>Maximization</h2>
+        </section>
+        <section data-background-image="$/images_pf/spinglass.svg" data-background-size="600px">
+          <h2 style="float:right;">Spinglass <span style="font-size:10px;">($\gamma=1$)</span></h2>
+        </section>
+        <section data-background-image="$/images_pf/spinglass_gamma_1_25.svg" data-background-size="600px">
+          <h2 style="float:right;">Spinglass <span style="font-size:10px;">($\gamma=1.25$)</span></h2>
+        </section>
+        <section data-background-image="$/images_pf/spinglass_gamma_1_75.svg" data-background-size="600px">
+          <h2 style="float:right;">Spinglass <span style="font-size:10px;">($\gamma=1.75$)</span></h2>
+        </section>
+        <section data-background-image="$/images_pf/spinglass_gamma_2.svg" data-background-size="600px">
+          <h2 style="float:right;">Spinglass <span style="font-size:10px;">($\gamma=2$)</span></h2>
+        </section>
+        <section data-background-image="$/images_pf/walk.svg" data-background-size="600px">
+          <h2 style="float:right;">Walktrap</h2>
+        </section>
+        <!-- <section data-background-image="$/images_pf/cover_book.jpg" id="marburg-cover-1">
+        </section>
+        <section data-background-image="$/images_pf/cover_book2.jpg" id="marburg-cover-2">
+        </section>
+        <section data-background-image="$/images_pf/O70L0L1_pf.jpg" id="marburg-save-the-date">
+        </section>
+        <section data-background-image="$/images_pf/Scene-Heade2r_pf.jpg" id="marburg-insert-wallpaper-roll">
+        </section> -->
+      </section>
+
+      <section>
+        <section id="discussion">
+          <h2>Discussion</h2>
+          <div class="section-subheader">So, what'd we find?</div>
+        </section>
+        <section data-background-image="$/images_pf/vision_1.png" data-background-size="700px">
+          <h2 style="float:right; margin-right: -50px; margin-top: 100px;">Vision LPUs</h2>
+          <div style="float:right; margin-right: -200px; margin-top: 200px;font-size: 14pt;" class="section-subheader">
+            <!-- LOP/lop<sup>1</sup><br/>OG/og<sup>2</sup><br/>LOB/lob<sup>3</sup><br/>OPTU/optu<sup>4</sup><br/>MED/med<sup>5</sup> -->
+          </div>
+          <span style="margin-right: 140px; margin-top: 480px; float:left; font-size:10px;">Image courtesy of <a href="http://www.cell.com/action/showImagesData?pii=S0960-9822%2810%2901522-8">Chiang et al.</a></span>
+          <br/><span style="float:left; margin-top: 50px; font-size:12px;"><sup>1</sup>Joesch, Maximilian, et al. "Response properties of motion-sensitive visual interneurons in the lobula plate of Drosophila melanogaster." Current Biology 18.5 (2008): 368-374.</span>
+          <br/><span style="float:left; font-size:12px;"><sup>2</sup>Mu, Laiyong, et al. "Optic glomeruli and their inputs in Drosophila share an organizational ground pattern with the antennal lobes." The Journal of Neuroscience 32.18 (2012): 6061-6071.</span>
+          <br/><span style="float:left; font-size:12px;"><sup>3</sup>Otsuna, Hideo, and Kei Ito. "Systematic analysis of the visual projection neurons of Drosophila melanogaster. I. Lobula‐specific pathways." Journal of Comparative Neurology 497.6 (2006): 928-958.</span>
+          <br/><span style="float:left; font-size:12px;"><sup>4</sup>Mota, Theo, et al. "Neural organization and visual processing in the anterior optic tubercle of the honeybee brain." The Journal of Neuroscience 31.32 (2011): 11443-11456.</span>
+          <br/><span style="float:left; font-size:12px;"><sup>5</sup>Morante, Javier, and Claude Desplan. "The color-vision circuit in the medulla of Drosophila." Current Biology 18.8 (2008): 553-565.</span>
+        </section>
+        <section data-background-image="$/images_pf/auditory_1.png" data-background-size="700px">
+          <h2 style="float:right; margin-right: -50px; margin-top: 100px;">Auditory LPUs</h2>
+
+          <span style="margin-right: 140px; margin-top: 480px; float:left; font-size:10px;">Image courtesy of <a href="http://www.cell.com/action/showImagesData?pii=S0960-9822%2810%2901522-8">Chiang et al.</a></span>
+          <br/><span style="float:left; margin-top: 50px; font-size:12px;"><sup>1</sup>Zanini, Damiano, et al. "Sound communication in Drosophila." Insect hearing and acoustic communication. Springer Berlin Heidelberg, 2014. 205-218.</span>
+          <br/><span style="float:left; font-size:12px;"><sup>2</sup>Shih, Chi-Tin, et al. "Connectomics-based analysis of information flow in the Drosophila brain." Current Biology 25.10 (2015): 1249-1258.</span>
+
+        </section>
+        <section data-background-image="$/images_pf/locomotion.png" data-background-size="800px">
+          <h2 style="float:right; margin-right: -50px; margin-top: 100px;">Locomotion LPUs</h2>
+
+          <span style="margin-right: 140px; margin-top: 480px; float:left; font-size:10px;">Image courtesy of <a href="http://www.cell.com/action/showImagesData?pii=S0960-9822%2810%2901522-8">Chiang et al.</a></span>
+          <br/><span style="float:left; font-size:12px;"><sup>1</sup>Shih, Chi-Tin, et al. "Connectomics-based analysis of information flow in the Drosophila brain." Current Biology 25.10 (2015): 1249-1258.</span>
+        </section>
+
+        <section data-background-image="$/images_pf/olfactory.png" data-background-size="800px">
+          <h2 style="float:right; margin-right: -80px; margin-top: 100px;">Olfactory LPUs</h2>
+
+          <span style="margin-right: 140px; margin-top: 480px; float:left; font-size:10px;">Image courtesy of <a href="http://www.cell.com/action/showImagesData?pii=S0960-9822%2810%2901522-8">Chiang et al.</a></span>
+          <br/><span style="float:left; font-size:12px;"><sup>1</sup>Shih, Chi-Tin, et al. "Connectomics-based analysis of information flow in the Drosophila brain." Current Biology 25.10 (2015): 1249-1258.</span>
+        </section>
+
+        <section data-background-image="$/images_pf/auditory_custom.svg" data-background-size="600px">
+          <h2 style="float:right;">Auditory</h2>
+        </section>
+        <section data-background-image="$/images_pf/vision_custom.svg" data-background-size="600px">
+          <h2 style="float:right;">Vision</h2>
+        </section>
+        <section data-background-image="$/images_pf/locomotion_custom.svg" data-background-size="600px">
+          <h2 style="float:right;">Locomotion</h2>
+        </section>
+        <section data-background-image="$/images_pf/olfactory_custom.svg" data-background-size="600px">
+          <h2 style="float:right;">Olfactory</h2>
+        </section>
+        <section data-background-image="$/images_pf/modularity_louvain.svg" data-background-size="600px">
+          <h2 style="float:right;">Louvain<br/>Modularity<br/>Maximization</h2>
+        </section>
+        <section data-background-image="$/images_pf/spinglass.svg" data-background-size="600px">
+          <h2 style="float:right;">Spinglass</h2>
+        </section>
+        <section data-background-image="$/images_pf/walk.svg" data-background-size="600px">
+          <h2 style="float:right;">Walktrap</h2>
+        </section>
+        <section data-background-image="$/images_pf/shih_sensory_experiment.png" data-background-size="600px">
+          <span style="margin-right: 140px; margin-top: 480px; float:left; font-size:10px;">Image courtesy of <a href="http://www.sciencedirect.com/science/article/pii/S096098221500336X">Shih et al.</a></span>
+          <h2 style="float:right;">Sensory Experiment</h2>
+        </section>
+
+        <section data-background-image="$/images_pf/spinglass_gamma_1_75.svg" data-background-size="600px">
+          <h2 style="float:right;">Spinglass <span style="font-size:10px;">($\gamma=1.75$)</span>
+          <br/><span style="float:right; font-size:14px;">Connection between vision and olfactory<br/>(PAN/VLP-V, SOG/VLP-V)?<br/><br/>More refined breakdown of senses.</span></h2>
+
+        </section>
+
+        <section>
+          <h2>Conclusion</h2>
+          <div class="section-subheader">Community detection generally found clusters of LPU with similar functionality.<br/><span style="font-size: 15px;">(But there were some surprises.)</span></div>
+        </section>
+
+      </section>
+
+      <section>
+        <section id="questions">
+          <h2>Questions</h2>
+          <div class="section-subheader">AMA.</div>
+        </section>
+        <!-- <section data-background-image="$/images_pf/7_ice_pf.jpg" id="patterns-packaging">
+        </section>
+        <section data-background-image="$/images_pf/Paper-Hot-Cup-Mockup-vol-4_pf_KL.jpg" id="patterns-cup-1">
+        </section>
+        <section data-background-image="$/images_pf/Paper-Hot-Cup-Mockup-vol-5_pf_KL.jpg" id="patterns-cup-2">
+        </section>
+        <section data-background-image="$/images_pf/Paper-Hot-Cup-Mockup-vol-6_pf_KL.jpg" id="patterns-cup-3">
+        </section>
+        <section data-background-image="$/images_pf/shopping-bags_pf.jpg" id="patterns-shopping-bag">
+        </section>
+        <section data-background-image="$/images_pf/Cardboard_Box_PSD_MockUp_pf.jpg" id="patterns-box">
+        </section> -->
+      </section>
+
+
+      <section id="contact">
+        <h2>Contact</h2>
+        <div class="section-subheader">
+          Any later questions, you can ask them by email!
+          <br/><span style="font-size: 10pt;">(Or don't.)</span>
+          <br><a class="contact-link contact-link_type_email" href="mailto:peter.henderson@mail.mcgill.ca">peter.henderson@mail.mcgill.ca</a>
+        </div>
+      </section>
+    </div>
+  </div>
+  <div class="navigation-hint">use arrow keys<br>to navigate</div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/headjs/0.96/head.min.js"></script>
+  <script src="js/reveal.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+  <script type="text/javascript" src="js/d3.min.js"></script>
+  <script type="text/javascript" src="js/d3.geom.min.js"></script>
+  <script type="text/javascript" src="js/d3.layout.min.js"></script>
+  <script type="text/javascript" src="js/force.js"></script>
+  <script>
+    // window.onresize = function(event) {
+    //   console.log('I am resized!', window.innerWidth, window.innerHeight);
+    // };
+
+    var numberOfPixels = 0;
+
+    var $navigationHint = $('.navigation-hint');
+
+    var $allMenuItems = $('.header__menu-item');
+    // console.log('all menu items', $allMenuItems);
+
+    var selectCurrentMenuItem = function() {
+
+      var currentHash = window.location.hash;
+      // console.log('location change !!!!', currentHash);
+
+      // numberOfPixels = numberOfPixels + 1;
+      // document.body.style = 'border: ' + numberOfPixels + 'px solid red';
+      //
+      // $('.header__menu-link, h2').css({
+      //   'border': numberOfPixels + 'px solid red'
+      // });
+
+      // $allMenuItems.css({
+      //   'outline': '1px solid red'
+      // }).toggleClass('haha');
+
+      $allMenuItems.removeClass('header__menu-item_state_current');
+
+      $currentMenuItem = $allMenuItems.filter(function(index, element) {
+        var linkHref = $(element).find('a').attr('href');
+        // console.log('checking filter', index, element, linkHref);
+        var shouldMakeCurrent = linkHref == currentHash;
+        if (linkHref != '#/') {
+          shouldMakeCurrent = currentHash.indexOf(linkHref) == 0;
+        }
+        return shouldMakeCurrent;
+      });
+      $currentMenuItem.addClass('header__menu-item_state_current')
+
+      // Toggle navigation hint
+      if (currentHash == '#/') {
+        $navigationHint.show();
+      } else {
+        $navigationHint.hide();
+      }
+
+      // Toggle navigation hint (alternative solution)
+      // var needToShowNavigationHint = false;
+      // if (currentHash == '#/') {
+      //   needToShowNavigationHint = true;
+      // }
+      // $('.navigation-hint').toggle(needToShowNavigationHint);
+
+      // trackPageView();
+    };
+
+    window.onhashchange = selectCurrentMenuItem;
+    selectCurrentMenuItem();
+
+    // More info https://github.com/hakimel/reveal.js#configuration
+    Reveal.initialize({
+      history: true,
+
+        math: {
+            mathjax: 'https://cdn.mathjax.org/mathjax/latest/MathJax.js',
+            config: 'TeX-AMS_HTML-full'  // See http://docs.mathjax.org/en/latest/config-files.html
+        },
+
+        dependencies: [
+            { src: 'js/math.js', async: true }
+        ]
+      // // More info https://github.com/hakimel/reveal.js#dependencies
+      // dependencies: [{
+      //   src: 'plugin/markdown/marked.js'
+      // }, {
+      //   src: 'plugin/markdown/markdown.js'
+      // }, {
+      //   src: 'plugin/notes/notes.js',
+      //   async: true
+      // }, {
+      //   src: 'plugin/highlight/highlight.js',
+      //   async: true,
+      //   callback: function() {
+      //     hljs.initHighlightingOnLoad();
+      //   }
+      // }]
+    });
+  </script>
+
+
+  <script>
+    // Load the IFrame Player API code asynchronously.
+    var tag = document.createElement('script');
+    tag.src = "https://www.youtube.com/player_api";
+    var firstScriptTag = document.getElementsByTagName('script')[0];
+    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+    // Replace the 'ytplayer' element with an <iframe> and
+    // YouTube player after the API code downloads.
+    var player;
+    function onYouTubePlayerAPIReady() {
+      player = new YT.Player('ytplayer', {
+        width: '920',
+        height: '490',
+        videoId: 'F4lc9cY4fMM',
+        playerVars: {
+          'wmode': 'opaque',
+          'autoplay': 1,
+          'controls': 0 ,
+          'showinfo': 0,
+          'start': 20,
+          'rel': 0,
+          'loop': 1,
+        },
+        events:{
+          'onReady':onPlayerReady
+        }
+     });
+    }
+    function onPlayerReady(event) {
+      event.target.mute();
+    }
+
+//     Reveal.addEventListener( 'slidechanged', function( event ) {
+//     MathJax.Hub.Rerender();
+// } );
+  </script>
+
+</body>
+
+</html>
